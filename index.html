@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ALFINO CHRIST B — Aspiring Software Developer & AI Engineer portfolio" />
+  <title>ALFINO CHRIST B | Portfolio</title>
+
+  <!-- Modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0f172a;          /* slate-900 */
+      --muted: #475569;         /* slate-600 */
+      --muted-2: #64748b;       /* slate-500 */
+      --border: #e2e8f0;        /* slate-200 */
+      --card: #f8fafc;          /* slate-50 */
+      --accent: #0b3a6e;        /* dark blue */
+      --accent-2: #1e293b;      /* slate-800 */
+      --shadow: 0 10px 30px rgba(2, 8, 23, 0.08);
+      --radius: 16px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* Subtle background grid (very light, professional) */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(11, 58, 110, 0.06), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(15, 23, 42, 0.05), transparent 40%),
+        linear-gradient(to bottom, rgba(2, 8, 23, 0.02), transparent 30%);
+      z-index: -1;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .brand strong{
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .brand span{
+      color: var(--muted-2);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    nav ul{
+      display: flex;
+      list-style: none;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      color: var(--accent-2);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    nav a:hover{
+      background: rgba(11, 58, 110, 0.07);
+      text-decoration: none;
+    }
+    .nav-cta{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+      text-decoration: none !important;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary{
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(11, 58, 110, 0.18);
+    }
+    .btn-primary:hover{
+      background: #09325f;
+      box-shadow: 0 10px 26px rgba(11, 58, 110, 0.22);
+    }
+    .btn-outline{
+      background: #fff;
+      border-color: var(--border);
+      color: var(--accent-2);
+    }
+    .btn-outline:hover{
+      border-color: rgba(11, 58, 110, 0.35);
+      background: rgba(11, 58, 110, 0.05);
+    }
+
+    /* Sections */
+    section { padding: 70px 0; }
+    .section-title{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.3px;
+    }
+    .section-title p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 56px 0 46px;
+    }
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 26px;
+      align-items: start;
+    }
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(11, 58, 110, 0.12);
+    }
+    .hero h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+    }
+    .hero .title{
+      margin: 0 0 14px;
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .hero .summary{
+      margin: 0 0 22px;
+      color: var(--muted);
+      max-width: 78ch;
+    }
+    .hero-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .mini-links{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .mini-links a{ font-weight: 600; }
+    .hero-card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .hero-card h3{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .hero-card .info{
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .info-row{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(226,232,240,0.9);
+      padding-bottom: 10px;
+    }
+    .info-row:last-child{
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .info-row strong{
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* Cards / Grids */
+    .grid-2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .grid-3{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card{
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 1px 0 rgba(2,8,23,0.03);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Experience timeline */
+    .timeline{
+      display: grid;
+      gap: 14px;
+    }
+    .role{
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+    .role-top{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .role-top .left{
+      display: grid;
+      gap: 2px;
+    }
+    .role-title{
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .role-org{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .role-meta{
+      color: var(--muted-2);
+      font-weight: 600;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .role ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    /* Skill pills */
+    .pill-wrap{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.02);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent-2);
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Subtle animations */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+    @media (max-width: 540px){
+      nav ul{ display: none; } /* keep it clean on mobile */
+      .btn{ width: 100%; }
+      .hero-actions{ flex-direction: column; }
+      .hero-card{ box-shadow: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <strong>ALFINO CHRIST B</strong>
+          <span>Portfolio</span>
+        </div>
+
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn btn-outline" href="#contact">Hire / Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker reveal">
+              <span class="dot" aria-hidden="true"></span>
+              <span>Minimal, recruiter-friendly portfolio</span>
+            </div>
+
+            <h1 class="reveal" style="transition-delay:.05s">ALFINO CHRIST B</h1>
+            <p class="title reveal" style="transition-delay:.1s">
+              AI &amp; Data Science Graduate | Software Developer | Full-Stack &amp; Generative AI Enthusiast
+            </p>
+
+            <p class="summary reveal" style="transition-delay:.15s">
+              Passionate and results-driven aspiring Software Developer with experience in AI, Machine Learning, Full-Stack Development, and Data Analytics. Strong foundation in Python, JavaScript, React.js, SQL, and Generative AI. Interested in building scalable software solutions and intelligent applications.
+            </p>
+
+            <div class="hero-actions reveal" style="transition-delay:.2s">
+              <a class="btn btn-primary" href="#projects">View Projects</a>
+
+              <!-- Replace resume.pdf with your actual file (or Google Drive link). -->
+              <a class="btn btn-outline" href="resume.pdf" download>Download Resume</a>
+
+              <a class="btn btn-outline" href="#contact">Contact Me</a>
+            </div>
+
+            <div class="mini-links reveal" style="transition-delay:.25s">
+              <span><strong style="color:var(--text);">Location:</strong> Kanyakumari, Tamil Nadu, India</span>
+              <span><strong style="color:var(--text);">Email:</strong> <a href="mailto:alfinochrist5@gmail.com">alfinochrist5@gmail.com</a></span>
+              <span><strong style="color:var(--text);">LinkedIn:</strong> <a href="https://www.linkedin.com/in/alfino-christ-b-3a46062a5/" target="_blank" rel="noreferrer">/alfino-christ-b-3a46062a5</a></span>
+              <span><strong style="color:var(--text);">GitHub:</strong> <a href="https://github.com/alfino21" target="_blank" rel="noreferrer">/alfino21</a></span>
+            </div>
+          </div>
+
+          <aside class="hero-card reveal" style="transition-delay:.12s" aria-label="Quick profile card">
+            <h3>Profile Snapshot</h3>
+            <div class="info">
+              <div class="info-row">
+                <span>Primary Focus</span>
+                <strong>Software + AI</strong>
+              </div>
+              <div class="info-row">
+                <span>Strengths</span>
+                <strong>Python · React · SQL</strong>
+              </div>
+              <div class="info-row">
+                <span>Interests</span>
+                <strong>GenAI · Full-Stack</strong>
+              </div>
+              <div class="info-row">
+                <span>Availability</span>
+                <strong>Intern / Entry-level</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>About Me</h2>
+          <p>A quick overview focused on what recruiters want to know.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Summary</h3>
+            <p>
+              I am an Artificial Intelligence and Data Science graduate with internship experience in software development, machine learning, and data analytics. I enjoy solving real-world problems using technology and continuously learning new tools and frameworks.
+            </p>
+          </div>
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>What I’m Looking For</h3>
+            <p>
+              Roles in Software Development, Python Development, AI Engineering, Data Analytics, and Full-Stack Development—where I can contribute to clean engineering practices and build reliable, scalable solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Education</h2>
+          <p>Academic foundation and focus area.</p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Bachelor of Technology — Artificial Intelligence &amp; Data Science</h3>
+          <p style="margin-top:6px;">
+            <strong>Jeppiaar Institute of Technology</strong> · 2022 – 2026 · Current CGPA: <strong>7.9</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Experience</h2>
+          <p>Internships and training aligned with software + AI roles.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="role reveal">
+            <div class="role-top">
+              <div class="left">
+                <p class="role-title">Software Engineer Trainee</p>
+                <p class="role-org">Zeesoft Solutions · Onsite</p>
+              </div>
+              <div class="role-meta">2026</div>
+            </div>
+            <ul>
+              <li>Assisted in development of software applications.</li>
+              <li>Contributed to feature implementation and bug fixing.</li>
+              <li>Collaborated with development teams on real-world projects.</li>
+            </ul>
+          </div>
+
+          <div class="role reveal" style="transition-delay:.05s">
+            <div class="role-top">
+              <div class="left">
+                <p class="role-title">Machine Learning Intern</p>
+                <p class="role-org">AK Info Park</p>
+              </div>
+              <div class="role-meta">Sep 2024 – Oct 2024</div>
+            </div>
+            <ul>
+              <li>Applied machine learning algorithms.</li>
+              <li>Performed data preprocessing and model evaluation.</li>
+              <li>Worked with Python and Pandas.</li>
+            </ul>
+          </div>
+
+          <div class="role reveal" style="transition-delay:.1s">
+            <div class="role-top">
+              <div class="left">
+                <p class="role-title">Data Intern</p>
+                <p class="role-org">QiBR Technologies · Bangalore</p>
+              </div>
+              <div class="role-meta">Aug 2025 – Nov 2025</div>
+            </div>
+            <ul>
+              <li>Worked on data cleaning and analysis.</li>
+              <li>Developed automation scripts using Python and SQL.</li>
+              <li>Assisted with backend logic optimization.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Technical Skills</h2>
+          <p>Organized for quick scanning and ATS readability.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Programming Languages</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">Python</span>
+              <span class="pill">Java</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">C++</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>Web Development</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">HTML</span>
+              <span class="pill">CSS</span>
+              <span class="pill">React.js</span>
+              <span class="pill">Node.js</span>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Databases</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">MySQL</span>
+              <span class="pill">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>AI &amp; Data Science</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">Machine Learning</span>
+              <span class="pill">Data Analytics</span>
+              <span class="pill">Generative AI</span>
+              <span class="pill">Natural Language Processing</span>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Tools</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">Git</span>
+              <span class="pill">GitHub</span>
+              <span class="pill">VS Code</span>
+              <span class="pill">JIRA</span>
+              <span class="pill">Postman</span>
+            </div>
+          </div>
+
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>Analytics</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">Power BI</span>
+              <span class="pill">Tableau</span>
+              <span class="pill">Excel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Projects</h2>
+          <p>Clear, outcome-focused summaries. Add GitHub links when ready.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>LawAssistBot — AI Powered Legal Assistant</h3>
+            <p style="margin-top:8px;">
+              Full-stack legal assistant using Python FastAPI backend. Built RESTful APIs for legal document generation and summarization with GPT-powered guidance and case analysis.
+            </p>
+            <p style="margin-top:10px; color: var(--muted-2); font-weight:700; font-size:13px;">
+              Tech: Python · FastAPI · REST APIs · GPT
+            </p>
+            <p style="margin-top:10px;">
+              <a href="#" aria-label="Add GitHub link for LawAssistBot">GitHub →</a>
+            </p>
+          </article>
+
+          <article class="card reveal" style="transition-delay:.05s">
+            <h3>Intelligent Metadata Query System (Generative AI)</h3>
+            <p style="margin-top:8px;">
+              Python-based metadata processing system that answers natural language queries using Gemini AI. Implemented schema mapping and intelligent retrieval for structured data.
+            </p>
+            <p style="margin-top:10px; color: var(--muted-2); font-weight:700; font-size:13px;">
+              Tech: Python · NLP · Gemini AI · Data Retrieval
+            </p>
+            <p style="margin-top:10px;">
+              <a href="#" aria-label="Add GitHub link for Metadata Query System">GitHub →</a>
+            </p>
+          </article>
+
+          <article class="card reveal" style="transition-delay:.1s">
+            <h3>Smart Speech Assistant for Stammerers</h3>
+            <p style="margin-top:8px;">
+              AI-powered speech therapy assistant with speech recognition and NLP integration. Provided real-time feedback and progress tracking to support fluency improvement.
+            </p>
+            <p style="margin-top:10px; color: var(--muted-2); font-weight:700; font-size:13px;">
+              Tech: Python · Speech Recognition · NLP
+            </p>
+            <p style="margin-top:10px;">
+              <a href="https://github.com/alfino21/stammer-ai-system" target="_blank" rel="noreferrer" aria-label="Smart Speech Assistant GitHub">GitHub ↗</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications + Languages -->
+    <section id="certifications">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Certifications &amp; Languages</h2>
+          <p>Extra signals for recruiters and global teams.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Certifications</h3>
+            <ul style="margin:10px 0 0; padding-left: 18px; color: var(--muted);">
+              <li>Machine Learning A-Z</li>
+              <li>Data Analyst in Python, Tableau, SQL &amp; ChatGPT</li>
+              <li>Complete Web Development Training</li>
+              <li>Web Design Courses</li>
+            </ul>
+          </div>
+
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>Languages</h3>
+            <div class="pill-wrap" style="margin-top:10px;">
+              <span class="pill">English</span>
+              <span class="pill">Tamil</span>
+              <span class="pill">Malayalam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title reveal">
+          <h2>Contact</h2>
+          <p>Best ways to reach me.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3>Details</h3>
+            <p style="margin-top:8px;"><strong>Location:</strong> Kanyakumari, Tamil Nadu, India</p>
+            <p><strong>Email:</strong> <a href="mailto:alfinochrist5@gmail.com">alfinochrist5@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alfino-christ-b-3a46062a5/" target="_blank" rel="noreferrer">linkedin.com/in/alfino-christ-b-3a46062a5</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/alfino21" target="_blank" rel="noreferrer">github.com/alfino21</a></p>
+
+            <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+              <a class="btn btn-primary" href="mailto:alfinochrist5@gmail.com">Email Me</a>
+              <a class="btn btn-outline" href="https://www.linkedin.com/in/alfino-christ-b-3a46062a5/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="card reveal" style="transition-delay:.05s">
+            <h3>Message</h3>
+            <p>
+              If you’re hiring for Software Developer, Python Developer, AI Engineer, Data Analyst, or Full-Stack Developer roles, I’d love to connect.
+            </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;">
+        <span>“Building intelligent solutions through AI and software development.”</span>
+        <span>© <span id="year"></span> ALFINO CHRIST B</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Subtle reveal-on-scroll animations (professional, not flashy)
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      }
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
